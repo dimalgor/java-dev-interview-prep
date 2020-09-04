@@ -46,4 +46,19 @@ class StringsQuestionsTest {
         int [] arr = {437,315,322,431,686,264,442};
         assertEquals(0, stringsQuestions.findNumbers(arr));
     }
+
+    @Test
+    void shiftIndexes() {
+        int[] arr = {1,0,2,3,0,4,5,0};
+        int[] duplicatedZeroesArr = {1,0,0,2,3,0,0,4};
+        boolean isDuplicationZeroesCorrect = true;
+        stringsQuestions.duplicateZeros(arr);
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] != duplicatedZeroesArr[i]){
+                isDuplicationZeroesCorrect = false;
+                break;
+            }
+        }
+        assertTrue(isDuplicationZeroesCorrect);
+    }
 }
