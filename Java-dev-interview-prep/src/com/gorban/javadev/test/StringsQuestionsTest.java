@@ -19,4 +19,31 @@ class StringsQuestionsTest {
         assertTrue(stringsQuestions.isUniqueChars(strWithUniqueChars));
         assertFalse(stringsQuestions.isUniqueChars(strWithDuplicatedChars));
     }
+
+    @Test
+    void sort() {
+        String unsortedStr = "zaxbyc";
+        String sortedStr = "abcxyz";
+        assertEquals(sortedStr, stringsQuestions.sort(unsortedStr));
+    }
+
+    @Test
+    void isPermutatated() {
+        String initialStr = "dog";
+        String permutatedStr = "god";
+        assertTrue(stringsQuestions.isPermutatated(initialStr, permutatedStr));
+    }
+
+    @Test
+    void isPermutated2() {
+        String initialStr = "dog";
+        String permutatedStr = "god";
+        assertTrue(stringsQuestions.isPermutated2(initialStr, permutatedStr));
+    }
+
+    @Test
+    void findNumbers() {
+        int [] arr = {437,315,322,431,686,264,442};
+        assertEquals(0, stringsQuestions.findNumbers(arr));
+    }
 }
