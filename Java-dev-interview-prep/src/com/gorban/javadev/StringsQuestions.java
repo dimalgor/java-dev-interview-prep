@@ -1,7 +1,8 @@
 package com.gorban.javadev;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class StringsQuestions {
 
@@ -94,5 +95,47 @@ public class StringsQuestions {
             nums1[i] = nums2[j++];
         }
         Arrays.sort(nums1);
+    }
+
+    public int removeElement(int[] nums, int val) {
+        int length = nums.length;
+        for (int i = 0; i < length; i++) {
+            if (nums[i] == val) {
+                for (int j = i; j < nums.length - 1; j++) {
+                    nums[j] = nums[j + 1];
+                }
+                nums[--length] = 0;
+                i--;
+            }
+        }
+
+        return length;
+    }
+
+    public int removeDuplicates(int[] nums) {
+        int length = nums.length;
+        for (int i = 0; i < length - 1; i++) {
+            if (nums[i] == nums[i + 1]) {
+                for (int j = i; j < nums.length - 1; j++) {
+                    nums[j] = nums[j + 1];
+                }
+                nums[--length] = 0;
+                i--;
+            }
+        }
+
+        return length;
+    }
+
+    public boolean checkIfExist(int[] arr) {
+        Set<Integer> set = new HashSet();
+        for (Integer i : arr) {
+            if (set.contains(i * 2) || (i % 2 == 0 && set.contains(i / 2))) {
+                return true;
+            } else {
+                set.add(i);
+            }
+        }
+        return false;
     }
 }

@@ -98,4 +98,100 @@ class StringsQuestionsTest {
         }
         return true;
     }
+
+    @Test
+    void removeElement() {
+        int[] nums = {3,2,2,3};
+        int val = 3;
+        int expectedLength = 2;
+        int[] expectedArr = {2,2,0,0};
+        int newLength = stringsQuestions.removeElement(nums, val);
+        assertEquals(expectedLength,newLength);
+        assertTrue(isEqual(nums, expectedArr));
+    }
+
+    @Test
+    void removeElement2() {
+        int[] nums = {0,1,2,2,3,0,4,2};
+        int val = 2;
+        int expectedLength = 5;
+        int[] expectedArr = {0,1,3,0,4,0,0,0};
+        int newLength = stringsQuestions.removeElement(nums, val);
+        assertEquals(expectedLength,newLength);
+        assertTrue(isEqual(nums, expectedArr));
+    }
+
+    @Test
+    void removeElement3() {
+        int[] nums = {4,4,0,1,0,2};
+        int val = 0;
+        int expectedLength = 4;
+        int[] expectedArr = {4,4,1,2,0,0};
+        int newLength = stringsQuestions.removeElement(nums, val);
+        assertEquals(expectedLength,newLength);
+        assertTrue(isEqual(nums, expectedArr));
+    }
+
+    @Test
+    void removeDuplicates() {
+        int[] nums = {1,1,2};
+        int[] expectedArr = {1,2,0};
+        int expectedLength = 2;
+        int newLength = stringsQuestions.removeDuplicates(nums);
+        assertEquals(expectedLength,newLength);
+        assertTrue(isEqual(nums, expectedArr));
+    }
+
+    @Test
+    void removeDuplicates2() {
+        int[] nums = {0,0,1,1,1,2,2,3,3,4};
+        int[] expectedArr = {0,1,2,3,4,0,0,0,0,0};
+        int expectedLength = 5;
+        int newLength = stringsQuestions.removeDuplicates(nums);
+        assertEquals(expectedLength,newLength);
+        assertTrue(isEqual(nums, expectedArr));
+    }
+
+    @Test
+    void checkIfExist() {
+        int[] arr = {10,2,5,3};
+        assertTrue(stringsQuestions.checkIfExist(arr));
+    }
+
+    @Test
+    void checkIfExist2() {
+        int[] arr = {7,1,14,11};
+        assertTrue(stringsQuestions.checkIfExist(arr));
+    }
+
+    @Test
+    void checkIfExist3() {
+        int[] arr = {3,1,7,11};
+        assertFalse(stringsQuestions.checkIfExist(arr));
+    }
+
+    @Test
+    void checkIfExist4() {
+        int[] arr = {-10,12,-20,-8,15};
+        assertTrue(stringsQuestions.checkIfExist(arr));
+    }
+
+    @Test
+    void checkIfExist5() {
+        int[] arr = {-20,8,-6,-14,0,-19,14,4};
+        assertTrue(stringsQuestions.checkIfExist(arr));
+    }
+
+    @Test
+    void checkIfExist6() {
+        int[] arr = {-2,0,10,-19,4,6,-8};
+        assertFalse(stringsQuestions.checkIfExist(arr));
+    }
+
+    @Test
+    void checkIfExist7() {
+        int[] arr = {0,0,};
+        assertTrue(stringsQuestions.checkIfExist(arr));
+    }
+
 }
