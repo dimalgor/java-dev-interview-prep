@@ -223,4 +223,12 @@ class StringsQuestionsTest {
         int[] A = {0,1,2,1,2};
         assertFalse(stringsQuestions.validMountainArray(A));
     }
+
+    @Test
+    void replaceElements() {
+        int[] arr = {17,18,5,4,6,1};
+        int[] expectedArr = {18,6,6,6,1,-1};
+        int[] outputArr = stringsQuestions.replaceElements(arr);
+        assertTrue(isEqual(outputArr, expectedArr));
+    }
 }
