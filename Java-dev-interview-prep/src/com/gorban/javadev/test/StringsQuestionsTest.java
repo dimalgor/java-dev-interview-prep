@@ -194,4 +194,33 @@ class StringsQuestionsTest {
         assertTrue(stringsQuestions.checkIfExist(arr));
     }
 
+    @Test
+    void validMountainArray() {
+        int[] A = {0,3,2,1};
+        assertTrue(stringsQuestions.validMountainArray(A));
+    }
+
+    @Test
+    void validMountainArray2() {
+        int[] A = {2,1};
+        assertFalse(stringsQuestions.validMountainArray(A));
+    }
+
+    @Test
+    void validMountainArray3() {
+        int[] A = {3,5,5};
+        assertFalse(stringsQuestions.validMountainArray(A));
+    }
+
+    @Test
+    void validMountainArray4() {
+        int[] A = {2,0,2};
+        assertFalse(stringsQuestions.validMountainArray(A));
+    }
+
+    @Test
+    void validMountainArray5() {
+        int[] A = {0,1,2,1,2};
+        assertFalse(stringsQuestions.validMountainArray(A));
+    }
 }

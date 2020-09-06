@@ -138,4 +138,25 @@ public class StringsQuestions {
         }
         return false;
     }
+
+    public boolean validMountainArray(int[] A) {
+        if (A == null || A.length < 3) {
+            return false;
+        }
+        boolean isStrictlyIncreasing = false;
+        boolean isStrictlyDecreasing = false;
+        for (int i = 0; i < A.length - 1; i++) {
+            if (A[i] < A[i + 1] && isStrictlyDecreasing == false) {
+                isStrictlyIncreasing = true;
+            } else if (A[i] == A[i + 1]) {
+                return false;
+            } else if (A[i] > A[i + 1]  && isStrictlyIncreasing == true) {
+                isStrictlyDecreasing = true;
+            } else {
+                return false;
+            }
+        }
+
+        return isStrictlyIncreasing && isStrictlyDecreasing;
+    }
 }
