@@ -2,6 +2,11 @@ package com.gorban.javadev.test;
 
 import com.gorban.javadev.StringsQuestions;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringsQuestionsTest {
@@ -92,6 +97,15 @@ class StringsQuestionsTest {
     }
     private boolean isEqual(int[] nums1, int[] expectedNums){
         for (int i = 0; i < nums1.length; i++){
+            if (nums1[i] != expectedNums[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkEqualityTillLength(int[] nums1, int[] expectedNums, int length){
+        for (int i = 0; i < length; i++){
             if (nums1[i] != expectedNums[i]){
                 return false;
             }
@@ -230,5 +244,105 @@ class StringsQuestionsTest {
         int[] expectedArr = {18,6,6,6,1,-1};
         int[] outputArr = stringsQuestions.replaceElements(arr);
         assertTrue(isEqual(outputArr, expectedArr));
+    }
+
+    @Test
+    void testRemoveDuplicates2() {
+        int[] arr = {1,1,2};
+        int[] expectedArr = {1,2,2};
+        int expectedArrLength = 2;
+        int newArrLength = stringsQuestions.removeDuplicates2(arr);
+        assertEquals(newArrLength, expectedArrLength);
+        assertTrue(checkEqualityTillLength(arr,expectedArr,newArrLength));
+    }
+
+    @Test
+    void testRemoveDuplicates3() {
+        int[] arr = {0,0,1,1,1,2,2,3,3,4};
+        int[] expectedArr = {0,1,2,3,4,2,2,3,3,4};
+        int expectedArrLength = 5;
+        int newArrLength = stringsQuestions.removeDuplicates2(arr);
+        assertEquals(newArrLength, expectedArrLength);
+        assertTrue(checkEqualityTillLength(arr,expectedArr,newArrLength));
+    }
+
+    @Test
+    void moveZeroes() {
+        int [] arr = {0,1,0,3,12};
+        int [] expectedArr = {1,3,12,0,0};
+        stringsQuestions.moveZeroes(arr);
+        assertTrue(isEqual(arr, expectedArr));
+    }
+
+    @Test
+    void moveZeroes2() {
+        int [] arr = {0,0,1};
+        int [] expectedArr = {1,0,0};
+        stringsQuestions.moveZeroes(arr);
+        assertTrue(isEqual(arr, expectedArr));
+    }
+
+    @Test
+    void sortArrayByParity() {
+        int [] arr = {3,1,2,4};
+        int [] expectedArr = {2,4,3,1};
+        stringsQuestions.sortArrayByParity(arr);
+        assertTrue(isEqual(arr, expectedArr));
+    }
+
+    @Test
+    void sortedSquares() {
+        int[] arr = {-4,-1,0,3,10};
+        int[] expectedArr = {0,1,9,16,100};
+        stringsQuestions.sortedSquares(arr);
+        assertTrue(isEqual(arr, expectedArr));
+    }
+
+    @Test
+    void sortedSquares2() {
+        int[] arr = {-7,-3,2,3,11};
+        int[] expectedArr = {4,9,9,49,121};
+        stringsQuestions.sortedSquares(arr);
+        assertTrue(isEqual(arr, expectedArr));
+    }
+
+    @Test
+    void heightChecker() {
+        int[] arr = {1,1,4,2,1,3};
+        int expectedMovements = 3;
+        int movements = stringsQuestions.heightChecker2(arr);
+        assertEquals(expectedMovements, movements);
+    }
+
+    @Test
+    void heightChecker2() {
+        int[] arr = {5,1,2,3,4};
+        int expectedMovements = 5;
+        int movements = stringsQuestions.heightChecker2(arr);
+        assertEquals(expectedMovements, movements);
+    }
+
+    @Test
+    void heightChecker3() {
+        int[] arr = {1,2,3,4,5};
+        int expectedMovements = 0;
+        int movements = stringsQuestions.heightChecker2(arr);
+        assertEquals(expectedMovements, movements);
+    }
+
+
+    @Test
+    void findDisappearedNumbers() {
+        int[] arr = {4,3,2,7,8,2,3,1};
+        List<Integer> expectedList = new ArrayList<>(Arrays.asList(5,6));
+        List<Integer> retrievedList = stringsQuestions.findDisappearedNumbers2(arr);
+        boolean isEqual = true;
+        for (int i = 0; i < retrievedList.size(); i++){
+            if (expectedList.get(i) != retrievedList.get(i)){
+                isEqual = false;
+                break;
+            }
+        }
+        assertTrue(isEqual);
     }
 }

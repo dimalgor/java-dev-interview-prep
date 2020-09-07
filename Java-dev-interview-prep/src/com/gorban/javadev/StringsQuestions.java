@@ -1,8 +1,6 @@
 package com.gorban.javadev;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class StringsQuestions {
 
@@ -175,5 +173,123 @@ public class StringsQuestions {
             }
         }
         return arr;
+    }
+
+    public int removeDuplicates2(int[] nums) {
+        if (nums == null || nums.length < 3){
+            // throw Exception;
+        }
+        int length = 0;
+        for (int i = 1; i < nums.length; i++){
+            if (nums[i] != nums[i-1]){
+                nums[++length] = nums[i];
+            }
+        }
+
+        return length + 1;
+    }
+
+    public void moveZeroes(int[] nums) {
+        int length = nums.length;
+        for (int i = 0; i < length; i++){
+            if (nums[i] == 0){
+                for (int j = i; j < length - 1; j++){
+                    nums[j] = nums[j+1];
+                }
+                nums[length -1] = 0;
+                length--;
+                if (nums[i]==0){
+                    i--;
+                }
+            }
+        }
+    }
+
+    public int[] sortArrayByParity(int[] A) {
+        for (int i = 0; i < A.length; i++){
+            if (A[i] % 2 != 0){
+                for (int j = i + 1; j < A.length; j++){
+                    if (A[j] % 2 == 0){
+                        int temp = A[i];
+                        A[i] = A[j];
+                        A[j] = temp;
+                        break;
+                    }
+                }
+            }
+        }
+        return A;
+    }
+
+    public int[] sortedSquares(int[] A) {
+        for (int i = 0; i< A.length; i++){
+            A[i] *= A[i];
+        }
+        Arrays.sort(A);
+        return A;
+    }
+
+    public int heightChecker(int[] heights) {
+        int movement = 0;
+        for (int i = 0; i < heights.length; i++){
+            int minValue = Integer.MAX_VALUE;
+            int minValuePosition = 0;
+            for (int j = i + 1; j < heights.length; j++){
+                if (minValue > heights[j]){
+                    minValue = heights[j];
+                    minValuePosition = j;
+                }
+            }
+            if (heights[i] > minValue){
+                int temp = heights[i];
+                heights[i] = heights[minValuePosition];
+                heights[minValuePosition] = temp;
+                movement++;
+            }
+        }
+
+        return movement;
+    }
+
+    public int heightChecker2(int[] heights){
+        int movements = 0;
+        int[] sorted = heights.clone();
+        Arrays.sort(sorted);
+        for (int i = 0; i < heights.length; i++){
+            if(heights[i] != sorted[i]){
+                movements++;
+            }
+        }
+        return movements;
+    }
+
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> disappearedNums = new ArrayList<>();
+        for (int i=0; i< nums.length; i++){
+            disappearedNums.add(i+1);
+        }
+
+        for (int i=0; i< nums.length; i++){
+            if (disappearedNums.contains(nums[i])){
+                disappearedNums.remove(disappearedNums.indexOf(nums[i]));
+            }
+        }
+
+        return disappearedNums;
+    }
+
+    public List<Integer> findDisappearedNumbers2(int[] nums) {
+        boolean[] appeared = new boolean[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            appeared[nums[i] - 1] = true;
+        }
+        List<Integer> result = new LinkedList<>();
+        for (int i = 0; i < appeared.length; i++) {
+            if (!appeared[i]) {
+                result.add(i + 1);
+            }
+        }
+
+        return result;
     }
 }
