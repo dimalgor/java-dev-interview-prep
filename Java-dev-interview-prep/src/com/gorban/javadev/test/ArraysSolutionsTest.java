@@ -1,6 +1,6 @@
 package com.gorban.javadev.test;
 
-import com.gorban.javadev.StringsQuestions;
+import com.gorban.javadev.ArraysSolutions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -9,43 +9,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StringsQuestionsTest {
+public class ArraysSolutionsTest {
 
-    StringsQuestions stringsQuestions = new StringsQuestions();
-
-    @Test
-    void isUnique() {
-        String strWithUniqueChars = "abcdefgh";
-        String strWithDuplicatedChars = "abbcddeffghh";
-        assertTrue(stringsQuestions.isUniqueChars(strWithUniqueChars));
-        assertFalse(stringsQuestions.isUniqueChars(strWithDuplicatedChars));
-    }
-
-    @Test
-    void sort() {
-        String unsortedStr = "zaxbyc";
-        String sortedStr = "abcxyz";
-        assertEquals(sortedStr, stringsQuestions.sort(unsortedStr));
-    }
-
-    @Test
-    void isPermutatated() {
-        String initialStr = "dog";
-        String permutatedStr = "god";
-        assertTrue(stringsQuestions.isPermutatated(initialStr, permutatedStr));
-    }
-
-    @Test
-    void isPermutated2() {
-        String initialStr = "dog";
-        String permutatedStr = "god";
-        assertTrue(stringsQuestions.isPermutated2(initialStr, permutatedStr));
-    }
+    ArraysSolutions arraysSolutions = new ArraysSolutions();
 
     @Test
     void findNumbers() {
         int [] arr = {437,315,322,431,686,264,442};
-        assertEquals(0, stringsQuestions.findNumbers(arr));
+        assertEquals(0, arraysSolutions.findNumbers(arr));
     }
 
     @Test
@@ -53,7 +24,7 @@ class StringsQuestionsTest {
         int[] arr = {1,0,2,3,0,4,5,0};
         int[] duplicatedZeroesArr = {1,0,0,2,3,0,0,4};
         boolean isDuplicationZeroesCorrect = true;
-        stringsQuestions.duplicateZeros(arr);
+        arraysSolutions.duplicateZeros(arr);
         for (int i = 0; i < arr.length; i++){
             if (arr[i] != duplicatedZeroesArr[i]){
                 isDuplicationZeroesCorrect = false;
@@ -70,7 +41,7 @@ class StringsQuestionsTest {
         int[] nums2 = {2,5,6};
         int n = 3;
         int[] expectedNums = {1,2,2,3,5,6};
-        stringsQuestions.merge(nums1, m, nums2,n);
+        arraysSolutions.merge(nums1, m, nums2,n);
         assertTrue(isEqual(nums1, expectedNums));
     }
 
@@ -81,7 +52,7 @@ class StringsQuestionsTest {
         int[] nums2 = {1,2,3};
         int n = 3;
         int[] expectedNums = {1,2,3,4,5,6};
-        stringsQuestions.merge(nums1, m, nums2,n);
+        arraysSolutions.merge(nums1, m, nums2,n);
         assertTrue(isEqual(nums1, expectedNums));
     }
 
@@ -92,7 +63,7 @@ class StringsQuestionsTest {
         int[] nums2 = {1,2,2};
         int n = 3;
         int[] expectedNums = {-1,0,0,1,2,2,3,3,3};
-        stringsQuestions.merge(nums1, m, nums2,n);
+        arraysSolutions.merge(nums1, m, nums2,n);
         assertTrue(isEqual(nums1, expectedNums));
     }
     private boolean isEqual(int[] nums1, int[] expectedNums){
@@ -119,7 +90,7 @@ class StringsQuestionsTest {
         int val = 3;
         int expectedLength = 2;
         int[] expectedArr = {2,2,0,0};
-        int newLength = stringsQuestions.removeElement(nums, val);
+        int newLength = arraysSolutions.removeElement(nums, val);
         assertEquals(expectedLength,newLength);
         assertTrue(isEqual(nums, expectedArr));
     }
@@ -130,7 +101,7 @@ class StringsQuestionsTest {
         int val = 2;
         int expectedLength = 5;
         int[] expectedArr = {0,1,3,0,4,0,0,0};
-        int newLength = stringsQuestions.removeElement(nums, val);
+        int newLength = arraysSolutions.removeElement(nums, val);
         assertEquals(expectedLength,newLength);
         assertTrue(isEqual(nums, expectedArr));
     }
@@ -141,7 +112,7 @@ class StringsQuestionsTest {
         int val = 0;
         int expectedLength = 4;
         int[] expectedArr = {4,4,1,2,0,0};
-        int newLength = stringsQuestions.removeElement(nums, val);
+        int newLength = arraysSolutions.removeElement(nums, val);
         assertEquals(expectedLength,newLength);
         assertTrue(isEqual(nums, expectedArr));
     }
@@ -151,7 +122,7 @@ class StringsQuestionsTest {
         int[] nums = {1,1,2};
         int[] expectedArr = {1,2,0};
         int expectedLength = 2;
-        int newLength = stringsQuestions.removeDuplicates(nums);
+        int newLength = arraysSolutions.removeDuplicates(nums);
         assertEquals(expectedLength,newLength);
         assertTrue(isEqual(nums, expectedArr));
     }
@@ -161,7 +132,7 @@ class StringsQuestionsTest {
         int[] nums = {0,0,1,1,1,2,2,3,3,4};
         int[] expectedArr = {0,1,2,3,4,0,0,0,0,0};
         int expectedLength = 5;
-        int newLength = stringsQuestions.removeDuplicates(nums);
+        int newLength = arraysSolutions.removeDuplicates(nums);
         assertEquals(expectedLength,newLength);
         assertTrue(isEqual(nums, expectedArr));
     }
@@ -169,80 +140,80 @@ class StringsQuestionsTest {
     @Test
     void checkIfExist() {
         int[] arr = {10,2,5,3};
-        assertTrue(stringsQuestions.checkIfExist(arr));
+        assertTrue(arraysSolutions.checkIfExist(arr));
     }
 
     @Test
     void checkIfExist2() {
         int[] arr = {7,1,14,11};
-        assertTrue(stringsQuestions.checkIfExist(arr));
+        assertTrue(arraysSolutions.checkIfExist(arr));
     }
 
     @Test
     void checkIfExist3() {
         int[] arr = {3,1,7,11};
-        assertFalse(stringsQuestions.checkIfExist(arr));
+        assertFalse(arraysSolutions.checkIfExist(arr));
     }
 
     @Test
     void checkIfExist4() {
         int[] arr = {-10,12,-20,-8,15};
-        assertTrue(stringsQuestions.checkIfExist(arr));
+        assertTrue(arraysSolutions.checkIfExist(arr));
     }
 
     @Test
     void checkIfExist5() {
         int[] arr = {-20,8,-6,-14,0,-19,14,4};
-        assertTrue(stringsQuestions.checkIfExist(arr));
+        assertTrue(arraysSolutions.checkIfExist(arr));
     }
 
     @Test
     void checkIfExist6() {
         int[] arr = {-2,0,10,-19,4,6,-8};
-        assertFalse(stringsQuestions.checkIfExist(arr));
+        assertFalse(arraysSolutions.checkIfExist(arr));
     }
 
     @Test
     void checkIfExist7() {
         int[] arr = {0,0,};
-        assertTrue(stringsQuestions.checkIfExist(arr));
+        assertTrue(arraysSolutions.checkIfExist(arr));
     }
 
     @Test
     void validMountainArray() {
         int[] A = {0,3,2,1};
-        assertTrue(stringsQuestions.validMountainArray(A));
+        assertTrue(arraysSolutions.validMountainArray(A));
     }
 
     @Test
     void validMountainArray2() {
         int[] A = {2,1};
-        assertFalse(stringsQuestions.validMountainArray(A));
+        assertFalse(arraysSolutions.validMountainArray(A));
     }
 
     @Test
     void validMountainArray3() {
         int[] A = {3,5,5};
-        assertFalse(stringsQuestions.validMountainArray(A));
+        assertFalse(arraysSolutions.validMountainArray(A));
     }
 
     @Test
     void validMountainArray4() {
         int[] A = {2,0,2};
-        assertFalse(stringsQuestions.validMountainArray(A));
+        assertFalse(arraysSolutions.validMountainArray(A));
     }
 
     @Test
     void validMountainArray5() {
         int[] A = {0,1,2,1,2};
-        assertFalse(stringsQuestions.validMountainArray(A));
+        assertFalse(arraysSolutions.validMountainArray(A));
     }
 
     @Test
     void replaceElements() {
         int[] arr = {17,18,5,4,6,1};
         int[] expectedArr = {18,6,6,6,1,-1};
-        int[] outputArr = stringsQuestions.replaceElements(arr);
+        int[] outputArr = arraysSolutions.replaceElements(arr);
         assertTrue(isEqual(outputArr, expectedArr));
     }
 
@@ -251,7 +222,7 @@ class StringsQuestionsTest {
         int[] arr = {1,1,2};
         int[] expectedArr = {1,2,2};
         int expectedArrLength = 2;
-        int newArrLength = stringsQuestions.removeDuplicates2(arr);
+        int newArrLength = arraysSolutions.removeDuplicates2(arr);
         assertEquals(newArrLength, expectedArrLength);
         assertTrue(checkEqualityTillLength(arr,expectedArr,newArrLength));
     }
@@ -261,7 +232,7 @@ class StringsQuestionsTest {
         int[] arr = {0,0,1,1,1,2,2,3,3,4};
         int[] expectedArr = {0,1,2,3,4,2,2,3,3,4};
         int expectedArrLength = 5;
-        int newArrLength = stringsQuestions.removeDuplicates2(arr);
+        int newArrLength = arraysSolutions.removeDuplicates2(arr);
         assertEquals(newArrLength, expectedArrLength);
         assertTrue(checkEqualityTillLength(arr,expectedArr,newArrLength));
     }
@@ -270,7 +241,7 @@ class StringsQuestionsTest {
     void moveZeroes() {
         int [] arr = {0,1,0,3,12};
         int [] expectedArr = {1,3,12,0,0};
-        stringsQuestions.moveZeroes(arr);
+        arraysSolutions.moveZeroes(arr);
         assertTrue(isEqual(arr, expectedArr));
     }
 
@@ -278,7 +249,7 @@ class StringsQuestionsTest {
     void moveZeroes2() {
         int [] arr = {0,0,1};
         int [] expectedArr = {1,0,0};
-        stringsQuestions.moveZeroes(arr);
+        arraysSolutions.moveZeroes(arr);
         assertTrue(isEqual(arr, expectedArr));
     }
 
@@ -286,7 +257,7 @@ class StringsQuestionsTest {
     void sortArrayByParity() {
         int [] arr = {3,1,2,4};
         int [] expectedArr = {2,4,3,1};
-        stringsQuestions.sortArrayByParity(arr);
+        arraysSolutions.sortArrayByParity(arr);
         assertTrue(isEqual(arr, expectedArr));
     }
 
@@ -294,7 +265,7 @@ class StringsQuestionsTest {
     void sortedSquares() {
         int[] arr = {-4,-1,0,3,10};
         int[] expectedArr = {0,1,9,16,100};
-        stringsQuestions.sortedSquares(arr);
+        arraysSolutions.sortedSquares(arr);
         assertTrue(isEqual(arr, expectedArr));
     }
 
@@ -302,7 +273,7 @@ class StringsQuestionsTest {
     void sortedSquares2() {
         int[] arr = {-7,-3,2,3,11};
         int[] expectedArr = {4,9,9,49,121};
-        stringsQuestions.sortedSquares(arr);
+        arraysSolutions.sortedSquares(arr);
         assertTrue(isEqual(arr, expectedArr));
     }
 
@@ -310,7 +281,7 @@ class StringsQuestionsTest {
     void heightChecker() {
         int[] arr = {1,1,4,2,1,3};
         int expectedMovements = 3;
-        int movements = stringsQuestions.heightChecker2(arr);
+        int movements = arraysSolutions.heightChecker2(arr);
         assertEquals(expectedMovements, movements);
     }
 
@@ -318,7 +289,7 @@ class StringsQuestionsTest {
     void heightChecker2() {
         int[] arr = {5,1,2,3,4};
         int expectedMovements = 5;
-        int movements = stringsQuestions.heightChecker2(arr);
+        int movements = arraysSolutions.heightChecker2(arr);
         assertEquals(expectedMovements, movements);
     }
 
@@ -326,7 +297,7 @@ class StringsQuestionsTest {
     void heightChecker3() {
         int[] arr = {1,2,3,4,5};
         int expectedMovements = 0;
-        int movements = stringsQuestions.heightChecker2(arr);
+        int movements = arraysSolutions.heightChecker2(arr);
         assertEquals(expectedMovements, movements);
     }
 
@@ -335,7 +306,7 @@ class StringsQuestionsTest {
     void findDisappearedNumbers() {
         int[] arr = {4,3,2,7,8,2,3,1};
         List<Integer> expectedList = new ArrayList<>(Arrays.asList(5,6));
-        List<Integer> retrievedList = stringsQuestions.findDisappearedNumbers2(arr);
+        List<Integer> retrievedList = arraysSolutions.findDisappearedNumbers2(arr);
         boolean isEqual = true;
         for (int i = 0; i < retrievedList.size(); i++){
             if (expectedList.get(i) != retrievedList.get(i)){
