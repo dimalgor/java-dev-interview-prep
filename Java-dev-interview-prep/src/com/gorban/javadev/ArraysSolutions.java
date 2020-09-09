@@ -238,4 +238,32 @@ public class ArraysSolutions {
 
         return result;
     }
+
+    public int thirdMax(int[] nums) {
+        int firstMax = Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
+        int thirdMax = Integer.MIN_VALUE;
+        boolean minValueAppearsOnlyOnce = true;
+        int counter = 0;
+
+        for (int i = 0; i < nums.length; i++){
+            if (nums[i] > firstMax){
+                thirdMax = secondMax;
+                secondMax = firstMax;
+                firstMax = nums[i];
+            } else if (nums[i] > secondMax && nums[i] != firstMax){
+                thirdMax = secondMax;
+                secondMax = nums[i];
+            } else if (nums[i] > thirdMax && nums[i] != secondMax && nums[i] != firstMax){
+                thirdMax = nums[i];
+            } else if (nums[i] == Integer.MIN_VALUE && minValueAppearsOnlyOnce == true){
+                minValueAppearsOnlyOnce = false;
+            } else {
+                continue;
+            }
+            counter++;
+        }
+
+        return counter > 2 ? thirdMax : firstMax;
+    }
 }

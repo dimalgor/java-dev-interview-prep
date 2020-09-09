@@ -316,4 +316,29 @@ public class ArraysSolutionsTest {
         }
         assertTrue(isEqual);
     }
+
+    @Test
+    void thirdMax() {
+        int[] arr = {3, 2, 1};
+        int thirdMax = arraysSolutions.thirdMax(arr);
+        assertEquals(1, thirdMax);
+    }
+
+    @Test
+    void thirdMax2() {
+        int[] arr = {1, 2};
+        int thirdMax = arraysSolutions.thirdMax(arr);
+        assertEquals(2, thirdMax);
+    }
+
+    @Test
+    void thirdMax3() {
+        int[] arr = {2, 2, 3, 1};
+        int thirdMax = arraysSolutions.thirdMax(arr);
+        assertEquals(1, thirdMax);
+    }
+
+
+
+
 }
