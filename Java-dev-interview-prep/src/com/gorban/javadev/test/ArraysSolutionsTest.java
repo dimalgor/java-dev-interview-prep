@@ -66,7 +66,7 @@ public class ArraysSolutionsTest {
         arraysSolutions.merge(nums1, m, nums2,n);
         assertTrue(isEqual(nums1, expectedNums));
     }
-    private boolean isEqual(int[] nums1, int[] expectedNums){
+    public boolean isEqual(int[] nums1, int[] expectedNums){
         for (int i = 0; i < nums1.length; i++){
             if (nums1[i] != expectedNums[i]){
                 return false;
