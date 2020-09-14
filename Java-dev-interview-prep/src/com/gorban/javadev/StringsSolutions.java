@@ -57,9 +57,9 @@ public class StringsSolutions {
         return true;
     }
 
-    public Set<String> getPermutations(String str){
+    public Set<String> getPermutations(String str) {
         Set<String> permutations = new HashSet<>();
-        if (str == null || str.length() == 0){
+        if (str == null || str.length() == 0) {
             permutations.add("");
         } else {
             char initialChar = str.charAt(0);
@@ -67,27 +67,27 @@ public class StringsSolutions {
 
             Set<String> words = getPermutations(remainingStr);
 
-            for (String word : words){
-                for (int i = 0; i <= word.length(); i++){
+            for (String word : words) {
+                for (int i = 0; i <= word.length(); i++) {
                     permutations.add(placeCharAt(word, initialChar, i));
                 }
             }
         }
 
-        return  permutations;
+        return permutations;
     }
 
-    private String placeCharAt(String str, char character, int indexToPlace){
+    private String placeCharAt(String str, char character, int indexToPlace) {
         String begin = str.substring(0, indexToPlace);
         String end = str.substring(indexToPlace);
         return begin + character + end;
     }
 
-    public String reverseEachWord(String str){
+    public String reverseEachWord(String str) {
         StringBuffer finalString = new StringBuffer();
         String[] strArr = str.split(" ");
 
-        for (String word : strArr){
+        for (String word : strArr) {
             finalString.append(new StringBuffer(word).reverse());
             finalString.append(" ");
         }
@@ -95,11 +95,11 @@ public class StringsSolutions {
         return finalString.toString().stripTrailing();
     }
 
-    public HashMap<Character, Integer> getCharsOccurrence(String str){
+    public HashMap<Character, Integer> getCharsOccurrence(String str) {
         HashMap<Character, Integer> occurrencesMap = new HashMap<>();
         char[] chars = str.toCharArray();
-        for (char c : chars){
-            if (occurrencesMap.containsKey(c)){
+        for (char c : chars) {
+            if (occurrencesMap.containsKey(c)) {
                 occurrencesMap.put(c, occurrencesMap.get(c) + 1);
             } else {
                 occurrencesMap.put(c, 1);
@@ -108,34 +108,34 @@ public class StringsSolutions {
         return occurrencesMap;
     }
 
-    public String reverseStringWithRecursion(String str){
+    public String reverseStringWithRecursion(String str) {
         String recursiveString = recursiveSwap(str);
 
         return recursiveString;
     }
 
-    private String recursiveSwap(String str){
-        if (str == null || str.length() < 1){
+    private String recursiveSwap(String str) {
+        if (str == null || str.length() < 1) {
             return str;
         } else {
             return recursiveSwap(str.substring(1)) + str.charAt(0);
         }
     }
 
-    public String uRLifyString(String str){
+    public String uRLifyString(String str) {
         char[] spaceReplacementChars = new char[]{'%', '2', '0'};
         int spaceCounter = 0;
-        for (int i = 0; i < str.length(); i++){
-            if (str.charAt(i) == ' '){
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') {
                 spaceCounter++;
             }
         }
         char[] resultCharsArray = new char[str.length() + (spaceCounter * 2)];
 
         int j = 0;
-        for (int i = 0; i < str.length(); i++){
-            if (str.charAt(i) == ' '){
-                for (int k = 0; k < spaceReplacementChars.length; k++){
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') {
+                for (int k = 0; k < spaceReplacementChars.length; k++) {
                     resultCharsArray[j++] = spaceReplacementChars[k];
                 }
             } else {
@@ -151,11 +151,11 @@ public class StringsSolutions {
         return checkMaxOneOdd(charFrequencyTable);
     }
 
-    private boolean checkMaxOneOdd(int[] table){
+    private boolean checkMaxOneOdd(int[] table) {
         boolean oddIsFound = false;
-        for (int num : table){
-            if (num % 2 == 1){
-                if (!oddIsFound){
+        for (int num : table) {
+            if (num % 2 == 1) {
+                if (!oddIsFound) {
                     oddIsFound = true;
                 } else {
                     return false;
@@ -165,24 +165,136 @@ public class StringsSolutions {
         return true;
     }
 
-    private int getCharNumericValue(Character c){
+    private int getCharNumericValue(Character c) {
         int begin = Character.getNumericValue('a');
         int end = Character.getNumericValue('z');
         int val = Character.getNumericValue(c);
-        if (val >= begin && val <= end){
+        if (val >= begin && val <= end) {
             return val - begin;
         } else return -1;
     }
 
-    private int[] buildCharFrequencyTable(String phrase){
+    private int[] buildCharFrequencyTable(String phrase) {
         int[] charFrequencyTable = new int[Character.getNumericValue('z') - Character.getNumericValue('a') + 1];
-        for (Character c : phrase.toCharArray()){
+        for (Character c : phrase.toCharArray()) {
             int charNumValue = getCharNumericValue(c);
-            if (charNumValue != -1){
+            if (charNumValue != -1) {
                 charFrequencyTable[charNumValue]++;
             }
         }
         return charFrequencyTable;
+    }
+
+    public boolean isOneWay(String initialStr, String editedStr) {
+        if (editedStr.length() > initialStr.length() || editedStr.length() < initialStr.length() - 1) {
+            return false;
+        }
+        int editsCounter = 0;
+        for (Character c : initialStr.toCharArray()) {
+            if (!editedStr.contains(c.toString())) {
+                editsCounter++;
+            }
+        }
+
+        return editsCounter == 1 ? true : false;
+    }
+
+    public String compressString(String str) {
+        StringBuilder compressedStr = new StringBuilder();
+        int charCounter = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (charCounter == 0) {
+                compressedStr.append(str.charAt(i));
+                charCounter++;
+            } else if (str.charAt(i - 1) == str.charAt(i)) {
+                charCounter++;
+            } else if (str.charAt(i - 1) != str.charAt(i)) {
+                compressedStr.append(charCounter);
+                charCounter = 1;
+                compressedStr.append(str.charAt(i));
+            }
+        }
+        compressedStr.append(charCounter);
+
+        return compressedStr.length() >= str.length() ? str : compressedStr.toString();
+    }
+
+    public boolean isSubstring(String s1, String s2) {
+        int charEqualsIndex = 0;
+        StringBuilder refurbishedStr = new StringBuilder();
+        for (int i = 0; i < s2.length(); i++) {
+            if (s2.charAt(i) == s1.charAt(0)) {
+                charEqualsIndex = i;
+                break;
+            }
+        }
+        refurbishedStr.append(s2.substring(charEqualsIndex));
+        refurbishedStr.append(s2.substring(0, charEqualsIndex));
+
+        return refurbishedStr.toString().equals(s1) ? true : false;
+    }
+
+    public void reverseString(char[] s) {
+        for (int i = s.length - 1; i > s.length / 2; i--) {
+            int position = (s.length - 1) - i;
+            char temp = s[position];
+            s[position] = s[i];
+            s[i] = temp;
+        }
+    }
+
+    public List<String> stringMatching(String[] words) {
+        List<String> matchingList = new ArrayList<>();
+        for (int i = 0; i< words.length; i++){
+            for (int j = 0; j < words.length; j++){
+                if (i != j && words[i].length() < words[j].length()){
+                    if (words[j].contains(words[i])){
+                        if (!matchingList.contains(words[i])){
+                            matchingList.add(words[i]);
+                        }
+                    }
+                }
+            }
+        }
+        return matchingList;
+    }
+
+    public int compress(char[] chars) {
+        int compressedIndex = 0;
+        int compressCounter = 1;
+
+        if (chars.length > 1){
+            for (int i = 1; i<chars.length; i++){
+                if (chars[i] == chars[i-1]){
+                    compressCounter++;
+                } else {
+                    if (compressCounter > 1){
+                        chars[compressedIndex] = chars[i];
+                        compressedIndex = writeCounter(compressCounter, compressedIndex, chars);
+                        compressCounter = 1;
+                    }
+                    compressedIndex++;
+                }
+                if (i == chars.length -1){
+                    compressedIndex = writeCounter(compressCounter, compressedIndex, chars);
+                }
+            }
+        }
+
+        return compressedIndex + 1;
+    }
+
+    private int writeCounter(int counter, int index, char[] arr){
+        if (counter >= 10){
+            int firstDigit = counter/10;
+            int lastDigit = counter%10;
+            arr[++index] = (char) (firstDigit + '0');
+            arr[++index] = (char) (lastDigit + '0');
+        } else {
+            arr[++index] = (char) (counter + '0');
+        }
+
+        return index;
     }
 
 }

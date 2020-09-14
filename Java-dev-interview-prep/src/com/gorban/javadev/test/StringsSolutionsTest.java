@@ -4,10 +4,7 @@ import com.gorban.javadev.ArraysSolutions;
 import com.gorban.javadev.StringsSolutions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -114,5 +111,116 @@ class StringsSolutionsTest {
         assertTrue(stringsSolutions.isPermutationOfPalindrome(palindrome));
         String notPalindrome = "tacocati";
         assertFalse(stringsSolutions.isPermutationOfPalindrome(notPalindrome));
+    }
+
+    @Test
+    void isOneWay() {
+        assertTrue(stringsSolutions.isOneWay("pale", "ple"));
+        assertTrue(stringsSolutions.isOneWay("pales", "pale"));
+        assertTrue(stringsSolutions.isOneWay("pale", "bale"));
+        assertFalse(stringsSolutions.isOneWay("pale", "bake"));
+    }
+
+    @Test
+    void compressString() {
+        String str = "aabcccccaaa";
+        String expectedCompressedStr = "a2b1c5a3";
+        assertEquals(expectedCompressedStr, stringsSolutions.compressString(str));
+        assertEquals("abcdefgh", stringsSolutions.compressString("abcdefgh"));
+    }
+
+    @Test
+    void isSubstring() {
+        String s1 = "waterbottle";
+        String s2 = "erbottlewat";
+        assertTrue(stringsSolutions.isSubstring(s1, s2));
+    }
+
+    @Test
+    void reverseString() {
+        char[] charArr = {'h','e','l','l','o'};
+        char[] reversedCharArr = {'o','l','l','e','h'};
+        stringsSolutions.reverseString(charArr);
+        assertEquals(new String(reversedCharArr), new String(charArr));
+    }
+
+    @Test
+    void reverseString2() {
+        char[] charArr = {'H','a','n','n','a','h'};
+        char[] reversedCharArr = {'h','a','n','n','a','H'};
+        stringsSolutions.reverseString(charArr);
+        assertEquals(new String(reversedCharArr), new String(charArr));
+    }
+
+    @Test
+    void stringMatching() {
+        String[] words = new String[]{"mass","as","hero","superhero"};
+        List<String> expectedSubstrings = new ArrayList<>(Arrays.asList("as","hero"));
+        List<String> substring = stringsSolutions.stringMatching(words);
+        assertEquals(expectedSubstrings, substring);
+    }
+
+    @Test
+    void stringMatching2() {
+        String[] words = new String[]{"leetcode","et","code"};
+        List<String> expectedSubstrings = new ArrayList<>(Arrays.asList("et","code"));
+        List<String> substring = stringsSolutions.stringMatching(words);
+        assertEquals(expectedSubstrings, substring);
+    }
+
+    @Test
+    void stringMatching3() {
+        String[] words = new String[]{"blue","green","bu"};
+        List<String> expectedSubstrings = new ArrayList<>();
+        List<String> substring = stringsSolutions.stringMatching(words);
+        assertEquals(expectedSubstrings, substring);
+    }
+
+    @Test
+    void stringMatching4() {
+        String[] words = new String[]{"leetcoder","leetcode","od","hamlet","am"};
+        List<String> expectedSubstrings = new ArrayList<>(Arrays.asList("leetcode","od","am"));
+        List<String> substring = stringsSolutions.stringMatching(words);
+        assertEquals(expectedSubstrings, substring);
+    }
+
+    @Test
+    void compress() {
+        char[] charsArr = new char[]{'a','a','b','b','c','c','c'};
+        char[] expectedCharsArr = new char[]{'a','2','b','2','c','3','c'};
+        int expectedLength = 6;
+        int length = stringsSolutions.compress(charsArr);
+        assertEquals(expectedLength, length);
+        assertTrue(Arrays.equals(expectedCharsArr, charsArr));
+    }
+
+    @Test
+    void compress2() {
+        char[] charsArr = new char[]{'a'};
+        char[] expectedCharsArr = new char[]{'a'};
+        int expectedLength = 1;
+        int length = stringsSolutions.compress(charsArr);
+        assertEquals(expectedLength, length);
+        assertTrue(Arrays.equals(expectedCharsArr, charsArr));
+    }
+
+    @Test
+    void compress3() {
+        char[] charsArr = new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'};
+        char[] expectedCharsArr = new char[]{'a','b','1','2','b','b','b','b','b','b','b','b','b'};
+        int expectedLength = 4;
+        int length = stringsSolutions.compress(charsArr);
+        assertEquals(expectedLength, length);
+        assertTrue(Arrays.equals(expectedCharsArr, charsArr));
+    }
+
+    @Test
+    void compress4() {
+        char[] charsArr = new char[]{'a','a','a','b','b','a','a'};
+        char[] expectedCharsArr = new char[]{'a','3','b','2','a','2','a'};
+        int expectedLength = 6;
+        int length = stringsSolutions.compress(charsArr);
+        assertEquals(expectedLength, length);
+        assertTrue(Arrays.equals(expectedCharsArr, charsArr));
     }
 }
