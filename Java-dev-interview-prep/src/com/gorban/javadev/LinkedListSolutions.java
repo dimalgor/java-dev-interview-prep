@@ -3,6 +3,7 @@ package com.gorban.javadev;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class LinkedListSolutions {
@@ -139,12 +140,16 @@ public class LinkedListSolutions {
 
         public ListNode(int x) {
             val = x;
-            next = null;
+        }
+
+        public ListNode(int x, ListNode next) {
+            val = x;
+            next = next;
         }
     }
 
     public static class Node {
-        int val = 0;
+        public int val = 0;
         Node next = null;
 
         public Node(int val) {
@@ -245,6 +250,162 @@ public class LinkedListSolutions {
     // Stream API
     public LinkedList<Integer> removeDuplicates3(LinkedList<Integer> list){
         return list.stream().distinct().collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    public Node getNthToLast(Node head, int nthToLast){
+        // nthToLast should be less than or equal amount of elements in Node
+        if (head == null){
+            return null;
+        }
+        Node p1 = head;
+        Node p2 = head;
+        for (int i = 0; i < nthToLast; i++){
+            p1 = p1.next;
+        }
+
+        while (p1 != null){
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+
+        return p2;
+    }
+
+    public ListNode reverseList(ListNode head) {
+        ListNode duplicated = head;
+        ListNode cur = head;
+        ListNode last = head;
+        int nodeLength = 0;
+        while (duplicated != null){
+            nodeLength++;
+            duplicated = duplicated.next;
+        }
+
+        for (int i = 0; i < nodeLength / 2; i++){
+            for (int j = i + 1; j < nodeLength - i; j++){
+                last = last.next;
+            }
+            int temp = cur.val;
+            cur.val = last.val;
+            last.val = temp;
+            cur = cur.next;
+            last = cur;
+        }
+
+        return head;
+    }
+
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode mergedList = new ListNode(-1);
+        ListNode result = mergedList;
+        ListNode longerList;
+        ListNode shorterList;
+        if (getListLength(l1) >= getListLength(l2)){
+            longerList = l1;
+            shorterList = l2;
+        } else {
+            longerList = l2;
+            shorterList = l1;
+        }
+
+        while (longerList != null){
+            if (shorterList!=null){
+                int val1;
+                int val2;
+                if (longerList.val <= shorterList.val){
+                    val1 = longerList.val;
+                    val2 = shorterList.val;
+                } else {
+                    val1 = shorterList.val;
+                    val2 = longerList.val;
+                }
+                mergedList = new ListNode(val1, new ListNode(val2));
+                mergedList = mergedList.next;
+
+                longerList = longerList.next;
+                shorterList = shorterList.next;
+            } else {
+                mergedList.next = longerList;
+                longerList = longerList.next;
+            }
+        }
+
+        return result.next;
+    }
+
+    private int getListLength(ListNode list){
+        int length = 0;
+        while(list != null){
+            length++;
+            list = list.next;
+        }
+        return length;
+    }
+
+    public ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
+        ListNode merged = new ListNode(0);
+        ListNode ptr = merged;
+        while(l1 != null || l2 != null){
+            int val1;
+            int val2;
+            if(l1 == null){
+                ptr.next = l2;
+                break;
+            }
+            if(l2 == null){
+                ptr.next = l1;
+                break;
+            }
+            else{
+                val1 = l1.val;
+                val2 = l2.val;
+            }
+            if(l1.val > l2.val){
+                ptr.next = new ListNode(l2.val);
+                l2 = l2.next;
+            }
+            else{
+                ptr.next = new ListNode(l1.val);
+                l1 = l1.next;
+            }
+            ptr = ptr.next;
+        }
+        return merged.next;
+    }
+
+    public boolean isPalindrome(ListNode head) {
+        int listLength = getLength(head);
+        if (listLength <= 1){
+            return true;
+        }
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < listLength / 2; i++){
+            stack.push(head.val);
+            head = head.next;
+        }
+
+        if (listLength % 2 != 0){
+            head = head.next;
+        }
+
+        while (head != null){
+            if (head.val != stack.pop()){
+                return false;
+            }
+            head = head.next;
+        }
+
+        return true;
+    }
+
+    private int getLength(ListNode head){
+        int length = 0;
+        while (head != null){
+            length++;
+            head = head.next;
+        }
+        return length;
     }
 
 
