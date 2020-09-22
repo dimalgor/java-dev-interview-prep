@@ -339,6 +339,12 @@ public class ArraysSolutionsTest {
     }
 
 
-
-
+    @Test
+    void maxProfit() {
+        assertEquals(2, arraysSolutions.maxProfit(new int[]{2,1,2,0,1}));
+        assertEquals(1, arraysSolutions.maxProfit(new int[]{1,2}));
+        assertEquals(7, arraysSolutions.maxProfit(new int[]{7,1,5,3,6,4}));
+        assertEquals(4, arraysSolutions.maxProfit(new int[]{1,2,3,4,5}));
+        assertEquals(0, arraysSolutions.maxProfit(new int[]{7,6,4,3,1}));
+    }
 }

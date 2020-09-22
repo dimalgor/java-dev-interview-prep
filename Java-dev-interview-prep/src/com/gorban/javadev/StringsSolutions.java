@@ -297,4 +297,108 @@ public class StringsSolutions {
         return index;
     }
 
+    public int firstUniqueChar(String s) {
+        for (int i = 0; i < s.length(); i++){
+            char cur = s.charAt(i);
+            char ptr = 0;
+            boolean isUnique = false;
+            for (int j = i + 1; j < s.length() -1; j++){
+                ptr = s.charAt(j);
+                if (cur == ptr){
+                    isUnique = false;
+                    break;
+                } else {
+                    isUnique = true;
+                }
+            }
+            if (isUnique){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public int firstUniqueChar2(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (Character c : s.toCharArray()) {
+            if (map.containsKey(c)){
+                map.put(c, map.get(c) + 1);
+            } else {
+                map.put(c, 1);
+            }
+        }
+        for (int i = 0; i < s.length(); i++){
+            if(map.get(s.charAt(i)) == 1){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()){
+            return false;
+        }
+        HashMap<Character, Integer> sMap = new HashMap<>();
+        HashMap<Character, Integer> tMap = new HashMap<>();
+
+        Character sChar;
+        Character tChar;
+        for (int i = 0; i < s.length(); i++){
+            sChar = s.charAt(i);
+            if (sMap.containsKey(sChar)){
+                sMap.put(sChar, sMap.get(sChar) + 1);
+            } else {
+                sMap.put(sChar, 1);
+            }
+
+
+            tChar = t.charAt(i);
+            if (tMap.containsKey(tChar)){
+                tMap.put(tChar, tMap.get(tChar) + 1);
+            } else {
+                tMap.put(tChar, 1);
+            }
+        }
+
+        if (sMap.equals(tMap)){
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isPalindrome(String s) {
+        if(s.isEmpty() || s.isBlank() || s.length() == 1){
+            return true;
+        }
+        s = s.toLowerCase();
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if (c <= Character.valueOf('z') && c >= Character.valueOf('a')){
+                sb.append(c);
+            } else if(c <= Character.valueOf('9') && c >= Character.valueOf('0')){
+                sb.append(c);
+            }
+        }
+
+        char[] charArr = sb.toString().toCharArray();
+
+        int j = 0;
+        for (int i = charArr.length -1; i > charArr.length/2 - 1; i--){
+            if (charArr[i] != charArr[j++]){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+
 }

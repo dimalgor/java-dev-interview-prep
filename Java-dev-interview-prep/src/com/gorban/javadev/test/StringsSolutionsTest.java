@@ -223,4 +223,30 @@ class StringsSolutionsTest {
         assertEquals(expectedLength, length);
         assertTrue(Arrays.equals(expectedCharsArr, charsArr));
     }
+
+    @Test
+    void firstUniqueChar() {
+        assertEquals(0, stringsSolutions.firstUniqueChar("leetcode"));
+        assertEquals(2, stringsSolutions.firstUniqueChar("loveleetcode"));
+        assertEquals(-1, stringsSolutions.firstUniqueChar2("abab"));
+    }
+
+    @Test
+    void isAnagram() {
+        assertTrue(stringsSolutions.isAnagram("anagram", "nagaram"));
+        assertFalse(stringsSolutions.isAnagram("rat", "car"));
+    }
+
+    @Test
+    void isPalindrome() {
+        assertTrue(stringsSolutions.isPalindrome("1b1"));
+        assertTrue(stringsSolutions.isPalindrome(".,"));
+        assertTrue(stringsSolutions.isPalindrome("a."));
+        assertTrue(stringsSolutions.isPalindrome(""));
+        assertTrue(stringsSolutions.isPalindrome(" "));
+        assertTrue(stringsSolutions.isPalindrome("."));
+        assertTrue(stringsSolutions.isPalindrome("A man, a plan, a canal: Panama"));
+        assertFalse(stringsSolutions.isPalindrome("race a car"));
+        assertFalse(stringsSolutions.isPalindrome("0P"));
+    }
 }

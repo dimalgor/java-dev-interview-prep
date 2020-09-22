@@ -266,4 +266,34 @@ public class ArraysSolutions {
 
         return counter > 2 ? thirdMax : firstMax;
     }
+
+    public int maxProfit(int[] prices) {
+        int profit = 0;
+        int buyPrice = -1;
+        int sellPrice = -1;
+
+        for (int i = 0; i < prices.length - 1; i++){
+            if (buyPrice == -1 && prices[i] < prices[i+1]){
+                buyPrice = prices[i];
+                if (i+1 == prices.length -1){
+                    sellPrice = prices[i+1];
+                } else {
+                    continue;
+                }
+            }
+            if (buyPrice != -1 && sellPrice == -1 && prices[i] > prices[i+1]){
+                sellPrice = prices[i];
+            } else if (buyPrice != -1 && sellPrice == -1 && i+1 == prices.length - 1){
+                sellPrice = prices[i+1];
+            }
+            if (buyPrice != -1 && sellPrice != -1){
+                int transactionProfit = sellPrice - buyPrice;
+                profit = profit + transactionProfit;
+                buyPrice = -1;
+                sellPrice = -1;
+            }
+        }
+
+        return profit;
+    }
 }
