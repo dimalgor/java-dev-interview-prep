@@ -296,4 +296,76 @@ public class ArraysSolutions {
 
         return profit;
     }
+
+    public void rotate(int[] nums, int k) {
+        for (int i = 0; i<k; i++){
+            int temp = nums[nums.length -1];
+            for (int j = nums.length -2; j >= 0; j--){
+                nums[j + 1] = nums[j];
+            }
+            nums[0] = temp;
+        }
+    }
+
+    public void rotate2(int[] nums, int k) {
+        if (nums.length > 1){
+            if(nums.length < k){
+                k = k - nums.length;
+            }
+
+            int[] beginArr = new int[k];
+            int[] endArr = new int[nums.length - k];
+
+            int index = 0;
+            for (int i = 0; i < nums.length; i++){
+                if (i < nums.length - k){
+                    endArr[i] = nums[i];
+                } else {
+                    beginArr[index++] = nums[i];
+                }
+            }
+            index = 0;
+
+            for (int i = 0; i < nums.length; i++){
+                if (i < beginArr.length){
+                    nums[i] = beginArr[i];
+                } else {
+                    nums[i] = endArr[index++];
+                }
+            }
+        }
+    }
+
+    public boolean containsDuplicate(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int i = 0; i < nums.length; i++){
+            if (!set.add(nums[i])){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int singleNumber(int[] nums) {
+        int singleNum = 0;
+        if (nums.length == 1){
+            return nums[0];
+        }
+
+        Arrays.sort(nums);
+        for (int i = 1; i < nums.length - 1; i++){
+            if(i == 1 && nums[i] != nums[i-1]){
+                singleNum = nums[i-1];
+                break;
+            } else if (i == nums.length - 2 && nums[i] != nums[i+1]){
+                singleNum = nums[i+1];
+                break;
+            } else if (nums[i] != nums[i - 1] && nums[i] != nums[i + 1]){
+                singleNum = nums[i];
+                break;
+            }
+        }
+
+        return singleNum;
+    }
 }

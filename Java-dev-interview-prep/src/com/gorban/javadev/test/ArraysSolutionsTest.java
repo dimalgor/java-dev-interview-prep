@@ -347,4 +347,62 @@ public class ArraysSolutionsTest {
         assertEquals(4, arraysSolutions.maxProfit(new int[]{1,2,3,4,5}));
         assertEquals(0, arraysSolutions.maxProfit(new int[]{7,6,4,3,1}));
     }
+
+    @Test
+    void rotate() {
+        int[] nums = new int[]{1,2,3,4,5,6,7};
+        int[] rotatedNums = new int[]{5,6,7,1,2,3,4};
+        int k = 3;
+        arraysSolutions.rotate(nums, k);
+        assertTrue(Arrays.equals(rotatedNums, nums));
+    }
+
+    @Test
+    void rotate2() {
+        int[] nums = new int[]{-1,-100,3,99};
+        int[] rotatedNums = new int[]{3,99,-1,-100};
+        int k = 2;
+        arraysSolutions.rotate(nums, k);
+        assertTrue(Arrays.equals(rotatedNums, nums));
+    }
+
+    @Test
+    void rotate3() {
+        int[] nums = new int[]{1,2,3,4,5,6,7};
+        int[] rotatedNums = new int[]{5,6,7,1,2,3,4};
+        int k = 3;
+        arraysSolutions.rotate2(nums, k);
+        assertTrue(Arrays.equals(rotatedNums, nums));
+    }
+
+    @Test
+    void rotate4() {
+        int[] nums = new int[]{-1,-100,3,99};
+        int[] rotatedNums = new int[]{3,99,-1,-100};
+        int k = 2;
+        arraysSolutions.rotate2(nums, k);
+        assertTrue(Arrays.equals(rotatedNums, nums));
+    }
+
+    @Test
+    void rotate5() {
+        int[] nums = new int[]{1,2};
+        int[] rotatedNums = new int[]{2,1};
+        int k = 3;
+        arraysSolutions.rotate2(nums, k);
+        assertTrue(Arrays.equals(rotatedNums, nums));
+    }
+
+    @Test
+    void containsDuplicate() {
+        assertTrue(arraysSolutions.containsDuplicate(new int[]{1,2,3,1}));
+        assertFalse(arraysSolutions.containsDuplicate(new int[]{1,2,3,4}));
+        assertTrue(arraysSolutions.containsDuplicate(new int[]{1,1,1,3,3,4,3,2,4,2}));
+    }
+
+    @Test
+    void singleNumber() {
+        assertEquals(1, arraysSolutions.singleNumber(new int[]{2,2,1}));
+        assertEquals(4, arraysSolutions.singleNumber(new int[]{4,1,2,1,2}));
+    }
 }
