@@ -405,4 +405,13 @@ public class ArraysSolutionsTest {
         assertEquals(1, arraysSolutions.singleNumber(new int[]{2,2,1}));
         assertEquals(4, arraysSolutions.singleNumber(new int[]{4,1,2,1,2}));
     }
+
+    @Test
+    void intersect() {
+        assertTrue(Arrays.equals(new int[]{2,2}, arraysSolutions.intersect2(new int[]{1,2,2,1}, new int[]{2,2})));
+        assertTrue(Arrays.equals(new int[]{4,9}, arraysSolutions.intersect2(new int[]{4,9,5}, new int[]{9,4,9,8,4})));
+        assertTrue(Arrays.equals(new int[]{1}, arraysSolutions.intersect2(new int[]{2,1}, new int[]{1,1})));
+        assertTrue(Arrays.equals(new int[]{1,2}, arraysSolutions.intersect2(new int[]{2,1}, new int[]{1,2})));
+        assertTrue(Arrays.equals(new int[]{1}, arraysSolutions.intersect2(new int[]{3,1,2}, new int[]{1,1})));
+    }
 }
