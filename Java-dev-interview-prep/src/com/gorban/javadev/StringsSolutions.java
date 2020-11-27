@@ -399,6 +399,32 @@ public class StringsSolutions {
         return true;
     }
 
+    // ["ab", "abc", "abcde", "abf"]
+    // -> "ab"
+    // -> ""
+    public String longestPrefix14(String[] args){
+        if (args == null){
+            throw new IllegalArgumentException("Test");
+        } else if (args.length == 0) {
+            return "";
+        } else if (args.length == 1){
+            return args[0];
+        }
+
+        String result = args[0];
+
+        for (int i = 1; i < args.length; i++){
+            while (args[i].indexOf(result) != 0 ){
+                result = result.substring(0, result.length() - 1);
+                if (result.isEmpty()){
+                    return "";
+                }
+            }
+        }
+
+        return result;
+    }
+
 
 
 }

@@ -15,4 +15,12 @@ class MathSolutionsTest {
         assertEquals(2, mathSolutions.calculateSqrt(5));
         assertEquals(3, mathSolutions.calculateSqrt(11));
     }
+
+    @Test
+    void calculateSquareRoot() {
+        assertEquals(3, mathSolutions.calculateSquareRoot(9));
+        assertEquals(2, mathSolutions.calculateSquareRoot(4));
+        assertEquals(2, mathSolutions.calculateSquareRoot(5));
+        assertEquals(3, mathSolutions.calculateSquareRoot(11));
+    }
 }

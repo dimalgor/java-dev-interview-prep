@@ -1,6 +1,5 @@
 package com.gorban.javadev.test;
 
-import com.gorban.javadev.ArraysSolutions;
 import com.gorban.javadev.StringsSolutions;
 import org.junit.jupiter.api.Test;
 
@@ -248,5 +247,11 @@ class StringsSolutionsTest {
         assertTrue(stringsSolutions.isPalindrome("A man, a plan, a canal: Panama"));
         assertFalse(stringsSolutions.isPalindrome("race a car"));
         assertFalse(stringsSolutions.isPalindrome("0P"));
+    }
+
+    @Test
+    void longestPrefix(){
+        assertEquals("ab", stringsSolutions.longestPrefix14(new String[]{"ab", "abc", "abcde", "abf"}));
+        assertEquals("", stringsSolutions.longestPrefix14(new String[]{"dbab", "abc", "abcde", "abf"}));
     }
 }

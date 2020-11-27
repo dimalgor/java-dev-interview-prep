@@ -452,4 +452,22 @@ public class ArraysSolutions {
         }
         return intersectArr;
     }
+
+    public boolean containsDuplicate2(int[] nums) {
+        if (nums == null){
+            throw new IllegalArgumentException("nums array is null");
+        } else if (nums.length < 2) {
+            return true;
+        }
+        boolean containsDuplicate = false;
+        Set<Integer> set = new HashSet<>();
+
+        for(int i = 0; i < nums.length; i++) {
+            if(!set.add(nums[i])){
+                return true;
+            }
+        }
+
+        return containsDuplicate;
+    }
 }

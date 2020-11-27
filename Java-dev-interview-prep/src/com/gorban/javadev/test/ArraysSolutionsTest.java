@@ -401,6 +401,13 @@ public class ArraysSolutionsTest {
     }
 
     @Test
+    void containsDuplicate2(){
+        assertTrue(arraysSolutions.containsDuplicate2(new int[]{1,2,3,1}));
+        assertFalse(arraysSolutions.containsDuplicate2(new int[]{1,2,3,4}));
+        assertTrue(arraysSolutions.containsDuplicate2(new int[]{1,1,1,3,3,4,3,2,4,2}));
+    }
+
+    @Test
     void singleNumber() {
         assertEquals(1, arraysSolutions.singleNumber(new int[]{2,2,1}));
         assertEquals(4, arraysSolutions.singleNumber(new int[]{4,1,2,1,2}));
